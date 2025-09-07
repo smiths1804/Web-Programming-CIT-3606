@@ -1,3 +1,67 @@
+/* Layout Styling */
+
 body {
-    
+  background-color: #191970; /* Midnight blue */
+  color: #AD1017; /* Midnight red */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+ color: #1a002b; /* Midnight purple */
+    text-align: center;
+    margin-top: 0.5em;
+    font-size: 2.5em;
+}
+
+header, main, footer {
+    width: 80%;
+    margin: 2.0em auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(255,0,0,0.3); /* red with opacity */
+    padding: 2.0em;
+    background: #D3D3D3; /* Light Gray */
+}
+
+header {
+  background: #ffffff;
+  border-bottom: 3px solid #191970;
+}
+
+main {
+    background: #AD1017;
+}
+
+footer {
+  background-color: #191970;
+  color: #1a002b;
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
+}
+
+img {
+    display: block;
+    margin: 1.0em auto;
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+ul {
+    text-align: center;
+    list-style-position: inside;
+    padding: 0;
+}
+
+table {
+    margin: 1.0em auto;
+    background:#D3D3D3;
+    border-collapse: collapse;
+    box-shadow: 0 1px 4px rgba(255,0,0,0.3);
+}
+
+th, td {
+    padding: 0.5em 1em;
+    border: 1px solid #ccc;
 }
