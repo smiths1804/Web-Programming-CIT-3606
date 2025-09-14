@@ -6,42 +6,42 @@
     <body>
       <h1>Yen to USD Converter</h1>
 
-    var now = new Date();
-
-    // used to get and set target time
-    var targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDay(), 12, 0, 0);
-
-    var millisTillTarget = targetTime - now;
-
-    // detertimes whether its before or after 12:00 
-    if (millisTillTarget < 0) {
-        targetTime.setDate(targetTime.getDate() + 1);
-        millisTillTarget = targetTime - now;
-    }
-
-    setTimeout(function() {
-        var current = new Date();
-        if (current.getHours() < 12) {
-            alert("Good morning!");
-        } else {
-            alert("Good evening!");
-        }
-    }, millisTillTarget);
-
       <input id="yenInput" type="number" placeholder="Enter Yen Amount">
       <button onclick="convert()">Convert</button>
       <p id="result"></p>
 
       <script>
+        // This is time greeting function
+        var now = new Date();
+
+        // used to get and set target time
+        var targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDay(), 12, 0, 0);
+
+        var millisTillTarget = targetTime - now;
+
+        // detertimes whether its before or after 12:00 
+        if (millisTillTarget < 0) {
+            targetTime.setDate(targetTime.getDate() + 1);
+            millisTillTarget = targetTime - now;
+        }
+
+        setTimeout(function() {
+            var current = new Date();
+            if (current.getHours() < 12) {
+                alert("Good morning!");
+            } else {
+                alert("Good evening!");
+            }
+        }, millisTillTarget);
+
+        // Currency converter for 2025 Yen to USD
         const exchangeRate = 0.0068;
 
         function convert(){
             let yen = document.getElementById("yenInput").value;
             let usd = (yen * exchangeRate).toFixed(2);
             document.getElementsById("result").innerText = `${yen} Yen = $${usd} USD`;
-        }
-      </script>
-
+            }
     </script>
    </body>
    </html>
