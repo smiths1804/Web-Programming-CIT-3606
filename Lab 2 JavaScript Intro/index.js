@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width">
-        <title>CIT 3606 Lab 2 JS Intro</title>
-        <link href="style.css" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-
-    var now = new Date();
+     var now = new Date();
 
     // finds the time/date and uses it to determine the message
     var targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDay(), 12, 0, 0);
@@ -27,8 +18,4 @@
         } else {
             alert("Good evening!");
         }
-    }, millisTillTarget;
-
-        
-    </body>
-</html>
+    }, millisTillTarget);
