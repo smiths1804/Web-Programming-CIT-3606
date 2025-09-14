@@ -40,7 +40,7 @@
 
         function convert(){
             let yen = document.getElementById("yenInput").value;
-            let usd = (yen * exchangeRate).toFixed(2);
+            let usd = (yen * exchangeRate).toFixed(4);
             document.getElementById("result").innerText = `${yen} Yen = $${usd} USD`;
             }
        </script>
