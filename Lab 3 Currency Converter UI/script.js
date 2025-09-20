@@ -19,3 +19,7 @@ function convertYen(){
     document.getElementById("usdOutput").value = usd;
     document.getElementById("eurOutput").value = eur;
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("convertBtn").addEventListener("click", convertYen);
+    })
