@@ -1,47 +1,17 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width">
-        <title>CIT 3606 Lab 3 Currency Converter</title>
-        <link href="style.css" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-      <h1>Yen to USD Converter</h1>
+<head>
+    <meta name="viewport" content="width=device-width">
+    <title>CIT 3606 Lab 3 Currency Converter</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>Yen Converter to USD and EUR</h1>
 
-      <input id="yenInput" type="number" placeholder="Enter Yen Amount">
-      <button onclick="convert()">Convert</button>
-      <p id="result"></p>
+    <input id="yenInput" type="number" placeholder="Enter Yen Amount">
+    <button onclick="convertYen()">Convert</button>
 
-      <script>
-        
-        var now = new Date();
-
-        // used to get and set target time
-        var targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDay(), 12, 0, 0);
-        var millisTillTarget = targetTime - now;
-
-        if (millisTillTarget < 0) {
-            targetTime.setDate(targetTime.getDate() + 1);
-            millisTillTarget = targetTime - now;
-        }
-
-        setTimeout(function() {
-            var current = new Date();
-            if (current.getHours() < 12) {
-                alert("Good morning!");
-            } else {
-                alert("Good evening!");
-            }
-        }, millisTillTarget);
-
-        // Currency converter for 2025 Yen to USD with it only being prompt + alert
-        const exchangeRate = 0.0068;
-        var yen = prompt("Enter Yen Amount:");
-        if (yen !== null && yen !== "") {
-        
-            var usd = (yen * exchangeRate).toFixed(4);
-            alert(yen + " Yen = $" + usd + " USD");
-        }
-      <script src="script.js"></script>
-    </body>
+    <p id="result"></p>
+</body>
 </html>
