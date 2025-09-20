@@ -7,13 +7,15 @@ function convertYen(){
     const yen = document.getElementById("yenInput").value;
 
     if (yen === "" || yen <= 0) {
-        document.getElementById("result").innerText = " Please enter a valid amount for Yen.";
+        alert("Please enter a valid amount for Yen.");
         return;
     }
 
+    // used to calc conversions
     const usd = yen * Yen_to_USD;
     const eur = yen * Yen_to_EUR;
 
-    document.getElementById("result").innerText =
-      `${yen} JPY = ${usd.toFixed(4)} USD | ${eur.toFixed(4)} EUR`;
+    // Now seperated to show output fields seperately USD | EUR
+    document.getElementById("usdOutput").value = usd;
+    document.getElementById("eurOutput").value = eur;
     }
