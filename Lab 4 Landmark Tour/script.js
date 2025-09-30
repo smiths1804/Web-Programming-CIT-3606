@@ -11,3 +11,12 @@
         });
     });
 
+    // Resize image functionality
+
+    function resizeImage(){
+        const size = document.getElementById("sizeSelect").value;
+        const img = document.getElementById("landmarkImage");
+        if(size === "small") img.width = 100;
+        else if(size === "medium") img.width = 200;
+        else if(size === "large") img.width = 400;
+    }

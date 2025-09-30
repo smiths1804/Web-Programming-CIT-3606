@@ -31,6 +31,16 @@
         </label>
       </div>
 
+     <!-- Select menu for resizing -->
+      <div style="margin-top:10px">
+        <label for="sizeSelect">Image size:</label>
+        <select id="sizeSelect" onchange="resizeImage()">
+            <option value="small">Small</option>
+            <option value="medium" selected>Medium</option>
+            <option value="large" selected>Large</option>
+        </select>
+      </div>
+
      <!-- The JavaScript code is attached at the bottom of the page
            after the page is completely loaded. Write your code in script.js. -->
      <script src="script.js"></script> 
