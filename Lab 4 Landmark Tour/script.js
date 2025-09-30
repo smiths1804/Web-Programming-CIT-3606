@@ -1,5 +1,4 @@
 
-<script>
     // Select all radio buttons with name "landmark"
 
     const radios = document.querySelectorAll('input[name="landmark"]');
@@ -12,4 +11,3 @@
         });
     });
 
-</script>
