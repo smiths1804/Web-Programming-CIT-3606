@@ -4,6 +4,7 @@
     function changeLandmark(value) {
       const img = document.getElementById("landmarkImage");
       const map = document.getElementById("landmarkMap");
+      const desc = document.getElementById("landmarkDescription");
     
 
 
