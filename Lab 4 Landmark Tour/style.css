@@ -1,3 +1,11 @@
 body {
     
 }
+
+#description {
+    background-color: darkgreen;
+    width: 300px;
+    margin-top: -30px;
+    margin-left: 5px;
+    text-align: center;
+}
