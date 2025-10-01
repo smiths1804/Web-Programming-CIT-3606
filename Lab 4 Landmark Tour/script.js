@@ -21,7 +21,7 @@
     // Resize image functionality
 
     function resizeImage(){
-        const size = document.getElementById("sizeSelect").value;
+        const sizeSelect = document.getElementById("sizeSelect").value;
         const img = document.getElementById("landmarkImage");
 
         if(size === "small") {

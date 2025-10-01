@@ -9,7 +9,7 @@
       <h1> Landmark Selector </h1>
 
       <!-- Landmark images with unique id -->
-      <img id="statueofliberty" src="images/statueofliberty.jpg" alt="liberty" width="200">
+      <img id="landmarkImage" src="images/statueofliberty.jpg" alt="Landmark" width="200" style="border-radius:8px; display:block;">
       
       <!-- Google Maps iFrame -->
       <iframe
@@ -20,20 +20,9 @@
 
         <!-- Radio buttons for each landmark -->
         <div>
-            <label>
-                <input type="radio" name="landmark" value="liberty" checked onchange="changeLandmark(this.value)">
-                Statue of Liberty
-            </label>
-            <br>
-            <label>
-                <input type="radio" name="landmark" value="edinburgh" onchange="changeLandmark(this.value)">
-                Edinbrugh Castle
-            </label>
-            <br>
-            <label>
-                <input type="radio" name="landmark" value="sydney" onchange="changeLandmark(this.value)">
-                Sydney Opera House
-            </label>
+            <label><input type="radio" name="landmark" value="liberty" checked> Statue of Liberty </label>
+            <label><input type="radio" name="landmark" value="edinburgh"> Edinbrugh Castle </label>
+            <label><input type="radio" name="landmark" value="sydney"> Sydney Opera House </label>
         </div>
 
      <!-- Select menu for resizing -->
