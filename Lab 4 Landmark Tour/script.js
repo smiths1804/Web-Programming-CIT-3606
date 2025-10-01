@@ -1,5 +1,5 @@
 
-    // Landmark data (with the embed map links for locations from google maps)
+    // Changes which landmark is selected
     
     function changeLandmark(value) {
       const img = document.getElementById("landmarkImage");
@@ -7,7 +7,7 @@
       const desc = document.getElementById("landmarkDescription");
     
 
-
+    // Used to switch between landmarks with descriptions
     if (value === "sydney"){
       img.src = 'images/sydneyoperahouse.jpg';
       map.src = 
