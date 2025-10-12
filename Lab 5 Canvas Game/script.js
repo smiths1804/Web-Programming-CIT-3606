@@ -36,4 +36,30 @@ let imgsLoaded = 0;
         );
 });
 
+//Used to Set Random Coordinates
+function randomPosForSprite(w,h){
+    const padding = 8;
+    const x = Math.floor(Math.random() * (canvas.width - w - padding * 2)) + padding;
+    const y = Math.floor(Math.random() * (canvas.width - h - padding * 2)) + padding;
+    return { x,y };
+}
+
+//Used to move sprite towards target
+function moveTowards(sprite) {
+    const dx = sprite.tx - sprite.x;
+    const dy = sprite.ty - sprite.y;
+    const dist = Math.hypot(dx,dy);
+    if (dist < 1) return;
+    const step = Math.min(sprite.speed, dist);
+    sprite.x += (dx / dist) * step;
+    sprite.y += (dy / dist) * step;
+}
+
+//Draws Everything
+function drawScene(){
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(turtleImg, turtle.x, turtle.y, turtle.w, turtle.h);
+    ctx.drawImage(moleImg, mole.x, mole.y, mole.w, mole.h);
+}
 
