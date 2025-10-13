@@ -29,6 +29,16 @@ button {
   position: relative;
 }
 
+#gameCanvas {
+  width: 800px;   
+  height: 600px;  
+  display: block;
+  margin: 0 auto;
+  border: 3px solid #333;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+
 canvas {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
