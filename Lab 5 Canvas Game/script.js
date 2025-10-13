@@ -106,7 +106,7 @@ canvas.addEventListener('mousedown', function (e) {
     const y = (e.clientY - rect.top) * scaleY;
 
     if(pointInSprite(x,y,turtle)) {
-        score -= 3;
+        score -= 1;
         scoreEl.textContent = score;
         alert('Ouch! You clicked the ${turtle.name}.\nScore: ${score}');
         const newPos = randomPosForSprite(turtle.w, turtle.h);
@@ -114,14 +114,14 @@ canvas.addEventListener('mousedown', function (e) {
         turtle.ty = newPos.y;
         return
     }
-        if(pointInSprite(x,y,turtle)) {
-        score += 5;
+        if(pointInSprite(x,y,mole)) {
+        score += 1;
         scoreEl.textContent = score;
         alert('Nice! You clicked the ${mole.name}.\nScore: ${score}');
         const newPos = randomPosForSprite(mole.w, mole.h);
         mole.tx = newPos.x;
         mole.ty = newPos.y;
-        return
+        return;
     }
 
     score -= 1;
