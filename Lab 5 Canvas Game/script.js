@@ -63,3 +63,30 @@ function drawScene(){
     ctx.drawImage(moleImg, mole.x, mole.y, mole.w, mole.h);
 }
 
+//Animation Loop
+
+function loop() {
+    moveTowards(turtle);
+    moveTowards(mole);
+    drawScene();
+    requestAnimationFrame(loop);
+}
+
+// Random Target movement
+
+let moveIntervalid = null;
+function startMovementInterval(){
+    moveIntervalid = setInterval(() => {
+        const t = randomPosForSprite(turtle.w, turtle.h);
+        turtle.tx = t.x;
+        turtle.ty = t.y;
+        
+        const m = randomPosForSprite(mole.w, mole.h);
+        mole.tx = t.x;
+        mole.ty = t.y;
+    }, 900);
+}
+
+// Collision Helpers
+
+
