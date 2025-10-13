@@ -50,10 +50,12 @@ function randomPosForSprite(w,h){
     const x = Math.floor(Math.random() * (canvas.width - w - padding * 2)) + padding;
     const y = Math.floor(Math.random() * (canvas.height - h - padding * 2)) + padding;
     // Changed to keep spawns within range-
-    return {
-        x: Math.min(Math.max(x, 0), canvas.width - w),
-        y: Math.min(Math.max(y, 0), canvas.height - h)
-    };
+    return { x, y };
+}
+
+function clampPosition(sprite){
+    sprite.x = Math.max(0, Math.min(sprite.x, canvas.width - sprite.w));
+    sprite.y = Math.max(0, Math.min(sprite.y, canvas.height - sprite.h));
 }
 
 //Used to move sprite towards target
@@ -65,6 +67,7 @@ function moveTowards(sprite) {
     const step = Math.min(sprite.speed, dist);
     sprite.x += (dx / dist) * step;
     sprite.y += (dy / dist) * step;
+    clampPosition(sprite)
 }
 
 //Draws Everything
