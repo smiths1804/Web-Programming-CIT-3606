@@ -89,4 +89,12 @@ function startMovementInterval(){
 
 // Collision Helpers
 
+function pointInSprite(px, py, sprite) {
+    return (
+        px >= sprite.x &&
+        px <= sprite.x + sprite.w &&
+        py >= sprite.y &&
+        py <= sprite.y + sprite.h
+    );
+}
 
