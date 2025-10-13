@@ -30,8 +30,8 @@ button {
 }
 
 canvas {
-  border-radius: 8px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-  background: #8fd17a;
-  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  max-width: none;
+  max-height: none;
 }
