@@ -9,9 +9,9 @@ const background = new Image();
 const turtleImg = new Image();
 const moleImg = new Image();
 
-background.src = Images/Grass.jpg;
-turtleImg = Images/InnocentTurtle.png;
-moleImg = Images/Mole.png;
+background.src = "Images/Grass.jpg";
+turtleImg.src = "Images/InnocentTurtle.png";
+moleImg.src = "Images/Mole.png";
 
 const SPRITE_W = 120;
 const SPRITE_H = 90;
