@@ -22,8 +22,16 @@ const scoreEl = document.getElementById('score');
 const resetBtn = document.getElementById('resetBtn');
 
 //The sprite objects
-const turtle = {x: 100, y: 100, tx: 100, ty: 100, w: SPRITE_W, h: SPRITE_W, Speed: 5, name: 'Turtle'};
-const mole = {x: 600, y: 300, tx: 600, ty: 300, w: SPRITE_W, h: SPRITE_W, Speed: 7, name: 'Mole'};
+const turtle = {
+    x: 100, y: 100, tx: 100, ty: 100, 
+    w: SPRITE_W, h: SPRITE_W, 
+    Speed: 5, 
+    name: 'Turtle'};
+const mole = {
+    x: 600, y: 300, tx: 600, ty: 300, 
+    w: SPRITE_W, h: SPRITE_W, 
+    Speed: 7, 
+    name: 'Mole'};
 
 //Image loading
 let imgsLoaded = 0;
@@ -40,7 +48,7 @@ let imgsLoaded = 0;
 function randomPosForSprite(w,h){
     const padding = 8;
     const x = Math.floor(Math.random() * (canvas.width - w - padding * 2)) + padding;
-    const y = Math.floor(Math.random() * (canvas.width - h - padding * 2)) + padding;
+    const y = Math.floor(Math.random() * (canvas.height - h - padding * 2)) + padding;
     // Changed to keep spawns within range-
     return {
         x: Math.min(Math.max(x, 0), canvas.width - w),
