@@ -98,3 +98,44 @@ function pointInSprite(px, py, sprite) {
     );
 }
 
+canvas.addEventListener('mousedown', function (e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
+
+    if(pointInSprite(x,y,turtle)) {
+        score += 5;
+        scoreEl.textContent = score;
+        alert('Nice! You clicked the ${turtle.name}.\nScore: ${score}');
+        const newPos = randomPosForSprite(turtle.w, turtle.h);
+        turtle.tx = newPos.x;
+        turtle.ty = newPos.y;
+        return
+    }
+
+    score -= 1;
+    scoreEl.textContent = score;
+    if (score % 10 === 0) alert('Missed! -1 Point. Score: ${score}');
+});
+
+// Code to start the game
+function startGame(){
+    const p1 = randomPosForSprite(turtle.w, turtle.h);
+    const p2 = randomPosForSprite(mole.w, mole.h);
+    turtle.x = turtle.tx = p1.x;
+    turtle.y = turtle.ty = p1.y;
+    mole.x = mole.tx = p2.x;
+    mole.y = mole.ty = p2.y;
+    
+    startMovementInterval();
+    requestAnimationFrame(loop);
+}
+
+resetBtn.addEventListener('click', () => {
+    score = 0;
+    scoreEl.textContent = score;
+    alert('Score reset to 0');
+});
+
