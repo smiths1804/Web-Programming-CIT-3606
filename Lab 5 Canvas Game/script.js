@@ -41,7 +41,11 @@ function randomPosForSprite(w,h){
     const padding = 8;
     const x = Math.floor(Math.random() * (canvas.width - w - padding * 2)) + padding;
     const y = Math.floor(Math.random() * (canvas.width - h - padding * 2)) + padding;
-    return { x,y };
+    // Changed to keep spawns within range-
+    return {
+        x: Math.min(Math.max(x, 0), canvas.width - w),
+        y: Math.min(Math.max(y, 0), canvas.height - h)
+    };
 }
 
 //Used to move sprite towards target
@@ -82,8 +86,8 @@ function startMovementInterval(){
         turtle.ty = t.y;
         
         const m = randomPosForSprite(mole.w, mole.h);
-        mole.tx = t.x;
-        mole.ty = t.y;
+        mole.tx = m.x;
+        mole.ty = m.y;
     }, 900);
 }
 
