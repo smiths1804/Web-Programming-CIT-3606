@@ -47,8 +47,8 @@ let imgsLoaded = 0;
 //Used to Set Random Coordinates
 function randomPosForSprite(w,h){
     const padding = 8;
-    const x = Math.floor(Math.random() * (canvas.width - w - padding * 2));
-    const y = Math.floor(Math.random() * (canvas.height - h - padding * 2));
+    const x = padding + Math.floor(Math.random() * (canvas.width - w - padding * 2));
+    const y = padding + Math.floor(Math.random() * (canvas.height - h - padding * 2));
     // Changed to keep spawns within range-
     return { x, y };
 }
