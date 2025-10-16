@@ -25,12 +25,12 @@ const resetBtn = document.getElementById('resetBtn');
 const turtle = {
     x: 100, y: 100, tx: 100, ty: 100, 
     w: SPRITE_W, h: SPRITE_W, 
-    Speed: 5, 
+    speed: 5, 
     name: 'Turtle'};
 const mole = {
     x: 600, y: 300, tx: 600, ty: 300, 
     w: SPRITE_W, h: SPRITE_W, 
-    Speed: 7, 
+    speed: 5, 
     name: 'Mole'};
 
 //Image loading
@@ -47,8 +47,14 @@ let imgsLoaded = 0;
 //Used to Set Random Coordinates
 function randomPosForSprite(w,h){
     const padding = 8;
-    const x = padding + Math.floor(Math.random() * (canvas.width - w - padding * 2));
-    const y = padding + Math.floor(Math.random() * (canvas.height - h - padding * 2));
+    const x = Math.max(padding, Math.min(
+        padding + Math.floor(Math.random() * (canvas.width - w - padding * 2)),
+        canvas.width - w - padding
+    ));
+    const y = Math.max(padding, Math.min(
+        padding + Math.floor(Math.random() * (canvas.height - h - padding * 2)),
+        canvas.height - h - padding
+    ));
     // Changed to keep spawns within range-
     return { x, y };
 }
