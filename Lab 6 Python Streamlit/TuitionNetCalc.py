@@ -21,7 +21,7 @@ local_scholarship = 0
 
 if gpa >= 3.5:
     merit_scholarship = 20000
-    st.ballons()
+    st.balloons()
 
 if sai <= 7395:
     pell_grant = 7395 - sai
