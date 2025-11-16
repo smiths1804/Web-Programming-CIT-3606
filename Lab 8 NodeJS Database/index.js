@@ -29,7 +29,7 @@ app.post('/insert', function(req, res){
 
     conn.query(sql, 
         [req.body.username, req.body.password, req.body.email], 
-        function (err, result) {
+        function (err) {
             if (err) throw err;
             res.send("New account has been created!");
         }
