@@ -1,16 +1,23 @@
 
+require('dotenv').config();
 const express = require('express'); 
 const app = express();
+const mysql = require('mysql');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/', function(req, res){
-   res.send("Hello world!");
+app.use((req, res, next) => {
+  console.log(new Date().toISOString(), req.method, req.url);
+  next();
 });
 
-require('dotenv').config();
-const mysql = require('mysql');
+// Serve static files from this folder so form.html is reachable at /form.html
+app.use(express.static(__dirname));
+
+app.get('/', function(req, res){
+  res.send("Hello world!");
+});
 
 const conn = mysql.createConnection({
   host: "mysql1-p2.ezhostingserver.com",
@@ -20,20 +27,28 @@ const conn = mysql.createConnection({
 });
 
 conn.connect((err) => {
-  if (err) throw err;
-  console.log("Connected!");
+  if (err) {
+    console.error('DB connection error:', err && err.message ? err.message : err);
+    return;
+  }
+  console.log("Connected to database");
 });
 
 app.post('/insert', function(req, res){
   const sql = "INSERT INTO Users (Username, Password, Email) VALUES (?, ?, ?)";
+  console.log('Insert request body:', req.body);
 
-    conn.query(sql, 
-        [req.body.username, req.body.password, req.body.email], 
-        function (err) {
-            if (err) throw err;
-            res.send("New account has been created!");
-        }
-    );
+  conn.query(sql,
+    [req.body.username, req.body.password, req.body.email],
+    function (err, results) {
+      if (err) {
+        console.error('Insert error:', err && err.message ? err.message : err);
+        return res.status(500).send('Database error while inserting account');
+      }
+      console.log('Insert results:', results);
+      res.send("New account has been created!");
+    }
+  );
 })
 
 app.get('/forgot', function(req, res) {
@@ -48,15 +63,20 @@ app.get('/forgot', function(req, res) {
 
 app.post('/retrieve', function(req, res) {
   const sql = "SELECT Username, Password FROM Users WHERE Email = ?";
+  console.log('Retrieve request body:', req.body);
   conn.query(sql, [req.body.email], function(err, results) {
-      if (err) throw err;
+    if (err) {
+      console.error('Retrieve error:', err && err.message ? err.message : err);
+      return res.status(500).send('Database error while retrieving account');
+    }
 
-      if (results.length > 0) {
-          const user = results[0];
-          res.send(`Username: ${user.Username} <br> Password: ${user.Password}`);
-      } else {
-          res.send("Email not found in the database.");
-      }
+    console.log('Retrieve results:', results);
+    if (results && results.length > 0) {
+      const user = results[0];
+      res.send(`Username: ${user.Username} <br> Password: ${user.Password}`);
+    } else {
+      res.send("Email not found in the database.");
+    }
   });
 });
 
