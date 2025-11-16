@@ -55,7 +55,7 @@ app.post('/retrieve', function(req, res) {
 
       if (results.length > 0) {
           const user = results[0];
-          res.send(`Username: ${user.Username} <br> Password: ${user.Password}`);
+          res.send(\`Username: ${user.Username} <br> Password: ${user.Password}`);
       } else {
           res.send("Email not found in the database.");
       }
