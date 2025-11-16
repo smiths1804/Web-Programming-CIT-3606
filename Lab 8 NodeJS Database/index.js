@@ -26,7 +26,7 @@ conn.connect((err) => {
   console.log("Connected!");
 });
 
-app.post('/Insert', function(req, res){
+app.post('/insert', function(req, res){
   const sql = "INSERT INTO Users (Username, Password, Email) VALUES (?, ?, ?)";
 
     conn.query(sql, 
