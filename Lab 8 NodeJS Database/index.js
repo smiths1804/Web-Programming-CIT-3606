@@ -60,4 +60,4 @@ app.post('/retrieve', function(req, res) {
   });
 });
 
-app.listen(8080, () => console.log("Sever running on Port 8080"));
+app.listen(8080, () => console.log("Server running on Port 8080"));
