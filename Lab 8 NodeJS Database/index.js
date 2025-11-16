@@ -9,8 +9,6 @@ app.get('/', function(req, res){
    res.send("Hello world!");
 });
 
-app.listen(8080);
-
 require('dotenv').config();
 const mysql = require('mysql');
 
@@ -62,3 +60,4 @@ app.post('/retrieve', function(req, res) {
   });
 });
 
+app.listen(8080, () => console.log("Sever running on Port 8080"));
