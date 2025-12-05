@@ -4,6 +4,8 @@ const words = [
 
 let CurrentWord = "";
 let Scrambled = "";
+let Timer = "";
+let TimeLeft = 60;
 
 function ScrambleWord(word){
     return word
@@ -17,6 +19,10 @@ function NewWord(){
 }
 
 function CheckWord(){
+
+}
+
+function Timer(){
 
 }
 
