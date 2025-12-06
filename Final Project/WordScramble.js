@@ -1,10 +1,11 @@
 const words = [
-
+    "python", "programs", "react", "variable", "functions", "object", "fullstack", "interface"
 ];
 
 let CurrentWord = "";
 let Scrambled = "";
 let Timer = "";
+let Score = "";
 let TimeLeft = 60;
 
 function ScrambleWord(word){
@@ -14,16 +15,25 @@ function ScrambleWord(word){
         .join("");
 }
 
-function NewWord(){
+function Timer(){
 
+}
+
+function UpdateScore(){
+    
+}
+
+function NewWord(){
+    document.getElementById("message").textContent = "";
+    CurrentWord = words[Math.floor(Math.random() * words.length)];
+    Scrambled = ScrambleWord(CurrentWord);
+    document.getElementById("scrambled-word").textContent = Scrambled;
+    document.getElementById("guess").value = "";
 }
 
 function CheckWord(){
-
-}
-
-function Timer(){
-
+    const guess = document.getElementById("guess").value.toLowerCase();
+    const message = document.getElementById("message");
 }
 
 if (!guess){
@@ -33,11 +43,17 @@ if (!guess){
 }
 
 if (guess === CurrentWord){
-
-
+    message.textContent = "Correct! You guessed the word!";
+    message.style.color = "green";
+    UpdateScore();
+    NewWord();
     } else {
-
+    message.textContent = "Incorrect! Please try again.";
+    message.style.color = "red";
     }
 
 document.getElementById("submit-btn").addEventListener("click", CheckWord);
 document.getElementById("new-btn").addEventListener("click", NewWord);
+document.getElementById("hint-btn").addEventListener("click", () => {
+    document.getElementById("message").textContent = 'The word starts with ${CurrentWord[0]}';
+})
