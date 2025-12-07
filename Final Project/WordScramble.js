@@ -36,11 +36,13 @@ function UpdateScore(){
 }
 
 function NewWord(){
-    document.getElementById("message").textContent = "";
+    const msg = document.getElementById("message");
+    msg.textContent = "";
     CurrentWord = words[Math.floor(Math.random() * words.length)];
     Scrambled = ScrambleWord(CurrentWord);
     document.getElementById("scrambled-word").textContent = Scrambled;
     document.getElementById("guess").value = "";
+    StartTimer();
 }
 
 function CheckWord(){
