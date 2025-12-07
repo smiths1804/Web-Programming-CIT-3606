@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: aquamarine;
+}
+
+h1 {
+    text-align: center;
+    color:aliceblue;
+    font-size: medium;
+}
+
+#game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#scrambled-word {
+    font-size: medium;
+    margin-bottom: 20px;
+    color: darkblue;
+}
+
+#score {
+
+}
+
+#timer {
+
+}
+
+#guess {
+
+}
+
+button {
+
+}
+
+#submit-btn {
+
+}
+
+#new-btn {
+
+}
+
+#hint-btn {
+
+}
+
+#message {
+
+}
