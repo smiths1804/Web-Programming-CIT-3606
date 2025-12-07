@@ -15,12 +15,24 @@ function ScrambleWord(word){
         .join("");
 }
 
-function Timer(){
-
+function StartTimer(){
+    clearInterval(timer);
+    timeLeft = 60;
+    document.getElementById("timer").textContent = 'Time Left: ${timeLeft}';
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").textContent = 'Time Left: ${timeLeft}';
+        if (timeLeft <= 0){
+            clearInterval(timer);
+            document.getElementById("message").textContent = "Time's up! The word was ${CurrentWord}.";
+            document.getElementById("message").style.color = "red";
+        }
+    }, 1000);
 }
 
 function UpdateScore(){
-    
+   score++;
+   document.getElementById("score").textContent = 'Score: ${score}'; 
 }
 
 function NewWord(){
@@ -46,8 +58,9 @@ if (guess === CurrentWord){
     message.textContent = "Correct! You guessed the word!";
     message.style.color = "green";
     UpdateScore();
+    clearInterval(timer);
     NewWord();
-    } else {
+} else {
     message.textContent = "Incorrect! Please try again.";
     message.style.color = "red";
     }
@@ -56,4 +69,6 @@ document.getElementById("submit-btn").addEventListener("click", CheckWord);
 document.getElementById("new-btn").addEventListener("click", NewWord);
 document.getElementById("hint-btn").addEventListener("click", () => {
     document.getElementById("message").textContent = 'The word starts with ${CurrentWord[0]}';
-})
+});
+
+NewWord();
