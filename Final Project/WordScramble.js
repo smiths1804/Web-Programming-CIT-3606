@@ -2,75 +2,150 @@ const words = [
     "python", "programs", "react", "variable", "functions", "object", "fullstack", "interface"
 ];
 
-let CurrentWord = "";
-let Scrambled = "";
-let Timer = "";
-let Score = "";
-let TimeLeft = 60;
+let currentWord = "";
+let scrambled = "";
+let timer = null;
+let score = 0;
+let timeLeft = 60;
 
-function ScrambleWord(word){
-    return word
-        .split("")
-        .sort(() => Math.random() - 0.5)
-        .join("");
+function scrambleWord(word) {
+    if (!word) return "";
+    if (word.length < 2) return word;
+
+    const arr = word.split("");
+    // if all characters are the same, just return the word
+    if (arr.every((c) => c === arr[0])) return word;
+
+    let shuffled = word;
+    // Fisher-Yates shuffle, retry if result equals original (rare)
+    while (shuffled === word) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        shuffled = arr.join("");
+    }
+    return shuffled;
 }
 
-function StartTimer(){
-    clearInterval(timer);
-    timeLeft = 60;
-    document.getElementById("timer").textContent = 'Time Left: ${timeLeft}';
+function $(id) { return document.getElementById(id); }
+
+function updateScoreUi() {
+    const el = $("score");
+    if (el) el.textContent = `Score: ${score}`;
+}
+
+function updateTimerUi() {
+    const el = $("timer");
+    if (el) el.textContent = `Time: ${timeLeft}`;
+}
+
+function startTimer(seconds = 60) {
+    if (timer) clearInterval(timer);
+    timeLeft = seconds;
+    updateTimerUi();
+
     timer = setInterval(() => {
         timeLeft--;
-        document.getElementById("timer").textContent = 'Time Left: ${timeLeft}';
-        if (timeLeft <= 0){
+        updateTimerUi();
+
+        if (timeLeft <= 0) {
             clearInterval(timer);
-            document.getElementById("message").textContent = "Time's up! The word was ${CurrentWord}.";
-            document.getElementById("message").style.color = "red";
+            timer = null;
+            const msg = $("message");
+            if (msg) {
+                msg.textContent = `Time's up! The word was "${currentWord}".`;
+                msg.style.color = "red";
+            }
+            // automatically load next word after a short pause
+            setTimeout(newWord, 1500);
         }
     }, 1000);
 }
 
-function UpdateScore(){
-   score++;
-   document.getElementById("score").textContent = 'Score: ${score}'; 
-}
+function newWord() {
+    const msg = $("message");
+    if (msg) msg.textContent = "";
 
-function NewWord(){
-    const msg = document.getElementById("message");
-    msg.textContent = "";
-    CurrentWord = words[Math.floor(Math.random() * words.length)];
-    Scrambled = ScrambleWord(CurrentWord);
-    document.getElementById("scrambled-word").textContent = Scrambled;
-    document.getElementById("guess").value = "";
-    StartTimer();
-}
+    currentWord = words[Math.floor(Math.random() * words.length)];
+    scrambled = scrambleWord(currentWord);
 
-function CheckWord(){
-    const guess = document.getElementById("guess").value.toLowerCase();
-    const message = document.getElementById("message");
-}
+    const scrEl = $("scrambled-word");
+    if (scrEl) scrEl.textContent = scrambled;
 
-if (!guess){
-    message.textContent = "Enter your guess!";
-    message.style.color = "purple";
-    return;
-}
-
-if (guess === CurrentWord){
-    message.textContent = "Correct! You guessed the word!";
-    message.style.color = "green";
-    UpdateScore();
-    clearInterval(timer);
-    NewWord();
-} else {
-    message.textContent = "Incorrect! Please try again.";
-    message.style.color = "red";
+    const guessEl = $("guess");
+    if (guessEl) {
+        guessEl.value = "";
+        guessEl.focus();
     }
 
-document.getElementById("submit-btn").addEventListener("click", CheckWord);
-document.getElementById("new-btn").addEventListener("click", NewWord);
-document.getElementById("hint-btn").addEventListener("click", () => {
-    document.getElementById("message").textContent = 'The word starts with ${CurrentWord[0]}';
-});
+    updateScoreUi();
+    startTimer(60);
+}
 
-NewWord();
+function updateScore() {
+    score++;
+    updateScoreUi();
+}
+
+function checkWord() {
+    const guessInput = $("guess");
+    const message = $("message");
+    if (!guessInput || !message) return;
+
+    const guess = guessInput.value.trim().toLowerCase();
+    if (!guess) {
+        message.textContent = "Enter your guess!";
+        message.style.color = "purple";
+        return;
+    }
+
+    if (guess === currentWord) {
+        message.textContent = "Correct! You guessed the word!";
+        message.style.color = "green";
+        updateScore();
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+        setTimeout(newWord, 800);
+    } else {
+        message.textContent = "Incorrect! Please try again.";
+        message.style.color = "red";
+    }
+}
+
+function showHint() {
+    const message = $("message");
+    if (!message) return;
+    if (!currentWord) {
+        message.textContent = "No word yet!";
+        return;
+    }
+    message.textContent = `Hint: starts with "${currentWord[0]}" and is ${currentWord.length} letters.`;
+    message.style.color = "black";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const submitBtn = $("submit-btn");
+    const newBtn = $("new-btn");
+    const hintBtn = $("hint-btn");
+    const guessInputEl = $("guess");
+
+    if (submitBtn) submitBtn.addEventListener("click", checkWord);
+    if (newBtn) newBtn.addEventListener("click", newWord);
+    if (hintBtn) hintBtn.addEventListener("click", showHint);
+
+    if (guessInputEl) {
+        guessInputEl.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                checkWord();
+            }
+        });
+    }
+
+    // initialize game
+    score = 0;
+    updateScoreUi();
+    newWord();
+});
