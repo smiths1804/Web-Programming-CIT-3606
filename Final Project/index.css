@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
-    background-color: aquamarine;
+    background-color: cyan;
 }
 
 h1 {
@@ -24,33 +24,45 @@ h1 {
 }
 
 #score {
-
+    size: medium;
+    margin-bottom: auto;
+    color: black;
 }
 
 #timer {
-
+    size: medium;
+    margin-bottom: auto;
+    color: black;
 }
 
-#guess {
-
+#guess-word {
+    text-align: center;
+    font-size: medium;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
 button {
-
+    font-size: medium;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
 }
 
 #submit-btn {
-
+    size-adjust: auto;
 }
 
 #new-btn {
-
+    size-adjust: auto;
 }
 
 #hint-btn {
-
+    size-adjust: auto;
 }
 
 #message {
-
+    font-size: medium;
+    margin-top: 20px;
+    color: darkred;
 }

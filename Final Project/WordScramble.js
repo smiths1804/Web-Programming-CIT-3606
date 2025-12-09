@@ -1,5 +1,5 @@
 const words = [
-    "python", "programs", "react", "variable", "functions", "object", "fullstack", "interface"
+    "python", "programs", "react", "variable", "functions", "object", "fullstack", "interface", "devices", "software", "debugging"
 ];
 
 let currentWord = "";
@@ -17,7 +17,7 @@ function scrambleWord(word) {
     if (arr.every((c) => c === arr[0])) return word;
 
     let shuffled = word;
-    // Fisher-Yates shuffle, retry if result equals original (rare)
+    // Fisher-Yates shuffle
     while (shuffled === word) {
         for (let i = arr.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -73,7 +73,7 @@ function newWord() {
     const scrEl = $("scrambled-word");
     if (scrEl) scrEl.textContent = scrambled;
 
-    const guessEl = $("guess");
+    const guessEl = $("guess-word");
     if (guessEl) {
         guessEl.value = "";
         guessEl.focus();
@@ -89,7 +89,7 @@ function updateScore() {
 }
 
 function checkWord() {
-    const guessInput = $("guess");
+    const guessInput = $("guess-word");
     const message = $("message");
     if (!guessInput || !message) return;
 
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const submitBtn = $("submit-btn");
     const newBtn = $("new-btn");
     const hintBtn = $("hint-btn");
-    const guessInputEl = $("guess");
+    const guessInputEl = $("guess-word");
 
     if (submitBtn) submitBtn.addEventListener("click", checkWord);
     if (newBtn) newBtn.addEventListener("click", newWord);
